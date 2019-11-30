@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import Counter from '../components/Counter'
 
 class CountersContaier extends Component {
@@ -27,6 +28,13 @@ class CountersContaier extends Component {
       </Fragment>
     )
   }
+}
+
+CountersContaier.propTypes = {
+  counters: PropTypes.array.isRequired,
+  onHandleIncrement: PropTypes.func.isRequired,
+  onHandleDecrement: PropTypes.func.isRequired,
+  onHandleDelete: PropTypes.func.isRequired
 }
 
 export default CountersContaier
