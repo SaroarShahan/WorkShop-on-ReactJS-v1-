@@ -6,7 +6,7 @@ class Todos extends Component {
     todo: "",
     todos: [
       { id: 1, title: "You have to learn React", status: false },
-      { id: 2, title: "You have to learn JS Basic", status: true }
+      { id: 2, title: "You have to learn JS Basic", status: false }
     ]
   };
 
@@ -34,8 +34,27 @@ class Todos extends Component {
     this.setState({ todos: filteredTodos });
   };
 
+  handleUpdate = id => {
+    const { todos } = this.state;
+
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          status: !todo.status
+        };
+      } else {
+        return todo;
+      }
+    });
+
+    this.setState({ todos: newTodos });
+  };
+
   render() {
     const { todos, todo } = this.state;
+
+    console.log(todos);
 
     return (
       <div>
@@ -51,9 +70,12 @@ class Todos extends Component {
 
         {todos.map(todo => (
           <Todo
+            key={todo.id}
             id={todo.id}
             title={todo.title}
+            status={todo.status}
             onHandleDelete={this.handleDelete}
+            onHandleUpdate={this.handleUpdate}
           />
         ))}
       </div>

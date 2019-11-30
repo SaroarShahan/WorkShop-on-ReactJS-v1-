@@ -1,11 +1,19 @@
 import React from "react";
+import { TodoItem, TodoTitle, Button } from "../styles/TodoItemStyle";
 
-const Todo = ({ id, title, onHandleDelete }) => {
+const Todo = ({ id, title, status, onHandleDelete, onHandleUpdate }) => {
   return (
-    <div style={{ display: "flex" }}>
-      <h2>{title}</h2>
-      <button onClick={() => onHandleDelete(id)}>X</button>
-    </div>
+    <TodoItem>
+      <div>
+        <TodoTitle>{status ? <del>{title}</del> : title}</TodoTitle>
+      </div>
+      <div>
+        <Button delete onClick={() => onHandleDelete(id)}>
+          X
+        </Button>
+        <Button onClick={() => onHandleUpdate(id)}>Toggle Done</Button>
+      </div>
+    </TodoItem>
   );
 };
 
